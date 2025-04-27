@@ -17,9 +17,9 @@ def parse_fields(line):
 	
 	# Check if this is request or reply (determines type #)
 	lower_line = line.lower()
-	if "request" in lower_line:
+	if "(ping) request" in lower_line:
 		fields["type"] = 8
-	else:
+	elif "(ping) reply" in lower_line:
 		fields["type"] = 0
 		
 	# Get sequence num
@@ -80,6 +80,7 @@ def parse(filtered_file) :
 	# print(all_packets[44])
 	# for packet in all_packets:
 	#	print(packet["source"])
+	#	print(packet["type"])
 	return all_packets
 			
 		

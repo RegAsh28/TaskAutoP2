@@ -19,7 +19,7 @@ def filter(node_txt, node_num) :
 		while i < total_packets:
 		
 			line = packets[i]
-			if "ICMP"  in line:
+			if "ICMP"  in line and "Echo" in line:
 				if "request" in line or "reply" in line:
 					output.write(line)
 					i += 1
