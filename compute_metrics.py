@@ -3,6 +3,8 @@ from packet_parser import parse
 
 def compute(all_packets, node_ip):
 	total_requests_sent = 0
+	total_requests_received = 0
+	total_reply_sent = 0
 	total_reply_received = 0
 	
 	print(f"Node IP: {node_ip}")
@@ -11,11 +13,17 @@ def compute(all_packets, node_ip):
 		if packet["type"] == 8:
 			if packet["source"] == node_ip:
 				total_requests_sent += 1
+			elif packet["destination"] == node_ip:
+				total_requests_received += 1
 		elif packet["type"] == 0:
 			if packet["destination"] == node_ip:
 				total_reply_received += 1
+			if packet["source"] == node_ip:
+				total_reply_sent += 1
 	
 	print(f"Total requests sent: {total_requests_sent}")
+	print(f"Total requests received: {total_requests_received}")
+	print(f"Total replies sent: {total_reply_sent}")
 	print(f"Total replies received: {total_reply_received}")
 	
 
